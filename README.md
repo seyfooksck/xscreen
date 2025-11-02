@@ -86,7 +86,4 @@ npm run start
 ## 📄 Lisans
 MIT
 
-## 👤 Yazar
-- GitHub: [@seyfooksck](https://github.com/seyfooksck)
 
-> Not: Depo adını farklı kullanacaksanız (ör. `screen-capture`), yukarıdaki GitHub bağlantısını buna göre güncelleyebilirsiniz.
