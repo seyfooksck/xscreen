@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xScreen • Galeri ve Ayarlar</title>
+    <link rel="stylesheet" href="ui.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">xScreen</div>
+        <div class="toolbar">
+          <button id="shot-btn" class="action">🖼️ Görüntü Al</button>
+          <button id="rec-btn" class="action">⏺️ Kaydı Başlat</button>
+          <span id="rec-indicator" class="badge" hidden>● Kayıt aktif</span>
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-tab="gallery">Galeri</button>
+          <button class="tab" data-tab="settings">Ayarlar</button>
+          <button class="tab" data-tab="about">Hakkında</button>
+        </nav>
+      </header>
+
+      <main class="content">
+        <section id="tab-gallery" class="tabpage active">
+          <div class="split">
+            <aside class="list">
+              <div class="section-title">Fotoğraflar</div>
+              <ul id="image-list" class="file-grid"></ul>
+              <div class="section-title mt">Videolar</div>
+              <ul id="video-list" class="file-list"></ul>
+            </aside>
+            <section class="preview">
+              <div id="empty-preview" class="placeholder">Bir öğe seçin…</div>
+              <img id="img-preview" class="viewer" style="display:none" />
+              <video id="vid-preview" class="viewer" controls style="display:none"></video>
+              <div class="actions">
+                <button id="open-btn" disabled>Dosyayı Aç</button>
+                <button id="folder-btn" disabled>Klasörde Göster</button>
+                <button id="delete-btn" class="danger" disabled>Sil</button>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section id="tab-settings" class="tabpage">
+          <form id="settings-form" class="form">
+            <div class="group">
+              <label>Otomatik başlat</label>
+              <label class="switch">
+                <input type="checkbox" id="autoLaunch" />
+                <span></span>
+              </label>
+            </div>
+
+            <div class="group">
+              <label>Sistem sesini kaydet</label>
+              <label class="switch">
+                <input type="checkbox" id="audio" />
+                <span></span>
+              </label>
+            </div>
+
+            <div class="group">
+              <label>FPS</label>
+              <select id="frameRate">
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="60">60</option>
+              </select>
+            </div>
+
+            <div class="group">
+              <label>Varsayılan klasör (boşsa Documents\\xScreen)</label>
+              <div class="row">
+                <input type="text" id="baseDir" placeholder="Örn: D:\\Medya\\xScreen" />
+              </div>
+            </div>
+
+            <div class="group">
+              <label>Kısayollar</label>
+              <div class="row">
+                <label class="chk"><input type="checkbox" id="scShot" /> Ctrl+Alt+S (Görüntü)</label>
+              </div>
+              <div class="row">
+                <label class="chk"><input type="checkbox" id="scRec" /> Ctrl+Alt+R (Kayıt)</label>
+              </div>
+            </div>
+
+            <div class="actions end">
+              <button type="submit" class="primary">Kaydet</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="tab-about" class="tabpage">
+          <div class="about">
+            <p><strong>xScreen</strong> — Ekran görüntüsü ve ekran kaydı aracı.</p>
+            <p>Çıktılar PNG ve MP4 olarak kaydedilir. MIT Lisansı.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="ui.js"></script>
+  </body>
+</html>

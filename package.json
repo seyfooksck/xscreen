@@ -1,0 +1,47 @@
+{
+  "name": "xscreen",
+  "version": "0.1.0",
+  "description": "Windows için tepsi (tray) ikonlu ekran görüntüsü ve ekran kaydı uygulaması.",
+  "main": "src/main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --ia32",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "auto-launch": "^5.0.5",
+    "ffmpeg-static": "^5.2.0",
+    "screenshot-desktop": "^1.14.0"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "xscreen.app",
+    "productName": "xScreen",
+    "icon": "src/img/icon.png",
+    "asar": true,
+    "asarUnpack": [
+      "**/*.node"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "src/img/icon.png"
+    },
+    "directories": {
+      "buildResources": "resources",
+      "output": "dir"
+    },
+    "files": [
+      "**/*",
+      "node_modules/**/*",
+      "!dir"
+    ]
+  }
+}

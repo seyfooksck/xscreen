@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Overlay</title>
+    <style>
+      html, body { margin: 0; padding: 0; background: transparent; }
+      #box {
+        position: fixed;
+        right: 0; bottom: 0;
+        width: 160px; height: 60px;
+        display: flex; align-items: center; justify-content: center;
+        gap: 8px;
+        background: rgba(0,0,0,0.5);
+        border-radius: 8px;
+        color: #fff;
+        font-family: system-ui, Arial, sans-serif;
+      }
+      button {
+        padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer;
+        background: #ff3b30; color: #fff; font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div id="dot" style="width:10px;height:10px;background:#ff3b30;border-radius:50%;animation:pulse .8s infinite"></div>
+        <span>Kaydediliyor… <span id="timer">00:00</span></span>
+      </div>
+      <button id="stop">Durdur</button>
+    </div>
+    <script>
+      const { ipcRenderer } = require('electron');
+      let sec = 0; let t;
+      function fmt(n){return String(n).padStart(2,'0');}
+      function tick(){ sec++; const m=Math.floor(sec/60); const s=sec%60; document.getElementById('timer').textContent=`${fmt(m)}:${fmt(s)}`; }
+      t = setInterval(tick,1000);
+  ipcRenderer.on('will-stop', ()=>{ try{clearInterval(t);}catch{}; const btn=document.getElementById('stop'); btn.disabled=true; btn.textContent='Kapatılıyor…'; });
+      document.getElementById('stop').addEventListener('click', () => { ipcRenderer.send('overlay-stop-clicked'); });
+    </script>
+    <style>
+      @keyframes pulse{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}
+    </style>
+  </body>
+</html>
